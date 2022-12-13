@@ -1,11 +1,14 @@
-const path = require("path");
+const path = require('path');
+const { HotModuleReplacementPlugin } = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+
 
 module.exports = {
   mode: "development",
-  devtool: "source-map",
-  entry: "./src/index.js",
+  devtool: 'source-map',
+  entry: ["./src/index.js", 'webpack-hot-middleware/client'],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index.bundle.js", // bundle 될 파일 이름
@@ -29,9 +32,22 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    // static: '/dist',
+    // hot: true,
+    // devMiddleware: {
+    //   index: true,
+    //   mimeTypes: { phtml: 'text/html' },
+    //   publicPath: '/dist',
+    //   serverSideRender: true,
+    //   writeToDisk: true,
+    // },
+  },
   plugins: [
+    new CleanWebpackPlugin(),
+    new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: "src/index.html",
+      template: "dist/index.html",
     }),
     new MiniCssExtractPlugin({
       filename: 'style.css',

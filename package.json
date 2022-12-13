@@ -21,7 +21,9 @@
   "dependencies": {
     "core-js": "^3.26.1",
     "css-loader": "^6.7.2",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "fxdom": "^0.8.3",
+    "fxjs": "^0.21.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",

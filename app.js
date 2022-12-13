@@ -20,11 +20,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, "dist/index.html"));
 });
 
-// app.use((req, res, next) => {
-//   const error = new Error(`router for ${req.method} ${req.url} is not exist.`)
-//   error.status = 404;
-//   next(error);
-// });
+app.use((req, res, next) => {
+  const error = new Error(`router for ${req.method} ${req.url} is not exist.`)
+  error.status = 404;
+  next(error);
+});
 
 app.use((err, req, res) => {
   const errorStatus = err.status || 500;
